@@ -17,90 +17,92 @@ class SideMenu extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(kDefaultPadding),
       color: kBgLightColor,
-      child: Column(
-        children: [
-          Row(
-            children: [
-              Image.asset(
-                "assets/images/Logo Outlook.png",
-                width: 46,
+      child: SafeArea(
+        child: Column(
+          children: [
+            Row(
+              children: [
+                Image.asset(
+                  "assets/images/Logo Outlook.png",
+                  width: 46,
+                ),
+                Spacer(),
+                if (!Responsive.isDesktop(context)) CloseButton(),
+              ],
+            ),
+            SizedBox(height: kDefaultPadding),
+            FlatButton.icon(
+              minWidth: double.infinity,
+              padding: EdgeInsets.symmetric(
+                horizontal: kDefaultPadding * 1.5,
+                vertical: kDefaultPadding,
               ),
-              Spacer(),
-              if (!Responsive.isDesktop(context)) CloseButton(),
-            ],
-          ),
-          SizedBox(height: kDefaultPadding),
-          FlatButton.icon(
-            minWidth: double.infinity,
-            padding: EdgeInsets.symmetric(
-              horizontal: kDefaultPadding * 1.5,
-              vertical: kDefaultPadding,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10),
+              ),
+              color: kPrimaryColor,
+              onPressed: () {},
+              icon: WebsafeSvg.asset("assets/Icons/Edit.svg", width: 16),
+              label: Text(
+                "New message",
+                style: TextStyle(color: Colors.white),
+              ),
+            ).addNeumorphism(
+              topShadowColor: Colors.white,
+              bottomShadowColor: Color(0xFF234395).withOpacity(0.2),
             ),
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(10),
+            SizedBox(height: kDefaultPadding),
+            FlatButton.icon(
+              minWidth: double.infinity,
+              padding: EdgeInsets.symmetric(
+                horizontal: kDefaultPadding * 1.5,
+                vertical: kDefaultPadding,
+              ),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10),
+              ),
+              color: kBgDarkColor,
+              onPressed: () {},
+              icon: WebsafeSvg.asset("assets/Icons/Download.svg", width: 16),
+              label: Text(
+                "Get messages",
+                style: TextStyle(color: kTextColor),
+              ),
+            ).addNeumorphism(),
+            SizedBox(height: kDefaultPadding * 2),
+            // Menu Items
+            SideMenuItem(
+              press: () {},
+              title: "Inbox",
+              iconSrc: "assets/Icons/Inbox.svg",
+              isActive: true,
+              itemCount: 3,
             ),
-            color: kPrimaryColor,
-            onPressed: () {},
-            icon: WebsafeSvg.asset("assets/Icons/Edit.svg", width: 16),
-            label: Text(
-              "New message",
-              style: TextStyle(color: Colors.white),
+            SideMenuItem(
+              press: () {},
+              title: "Sent",
+              iconSrc: "assets/Icons/Send.svg",
+              isActive: false,
             ),
-          ).addNeumorphism(
-            topShadowColor: Colors.white,
-            bottomShadowColor: Color(0xFF234395).withOpacity(0.2),
-          ),
-          SizedBox(height: kDefaultPadding),
-          FlatButton.icon(
-            minWidth: double.infinity,
-            padding: EdgeInsets.symmetric(
-              horizontal: kDefaultPadding * 1.5,
-              vertical: kDefaultPadding,
+            SideMenuItem(
+              press: () {},
+              title: "Drafts",
+              iconSrc: "assets/Icons/File.svg",
+              isActive: false,
             ),
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(10),
+            SideMenuItem(
+              press: () {},
+              title: "Deleted",
+              iconSrc: "assets/Icons/Trash.svg",
+              isActive: false,
+              showBorder: false,
             ),
-            color: kBgDarkColor,
-            onPressed: () {},
-            icon: WebsafeSvg.asset("assets/Icons/Download.svg", width: 16),
-            label: Text(
-              "Get messages",
-              style: TextStyle(color: kTextColor),
-            ),
-          ).addNeumorphism(),
-          SizedBox(height: kDefaultPadding * 2),
-          // Menu Items
-          SideMenuItem(
-            press: () {},
-            title: "Inbox",
-            iconSrc: "assets/Icons/Inbox.svg",
-            isActive: true,
-            itemCount: 3,
-          ),
-          SideMenuItem(
-            press: () {},
-            title: "Sent",
-            iconSrc: "assets/Icons/Send.svg",
-            isActive: false,
-          ),
-          SideMenuItem(
-            press: () {},
-            title: "Drafts",
-            iconSrc: "assets/Icons/File.svg",
-            isActive: false,
-          ),
-          SideMenuItem(
-            press: () {},
-            title: "Deleted",
-            iconSrc: "assets/Icons/Trash.svg",
-            isActive: false,
-            showBorder: false,
-          ),
 
-          SizedBox(height: kDefaultPadding * 2),
-          // Tags
-          Tags(),
-        ],
+            SizedBox(height: kDefaultPadding * 2),
+            // Tags
+            Tags(),
+          ],
+        ),
       ),
     );
   }
