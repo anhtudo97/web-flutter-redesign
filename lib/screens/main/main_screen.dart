@@ -7,7 +7,7 @@ import 'components/list_of_emails.dart';
 class MainScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    Size _size = MediaQuery.of(context).size;
+    Size _size = MediaQuery.maybeOf(context).size;
 
     // Once our width is less then 1300 then it start showing errors
     return Scaffold(
