@@ -19,12 +19,16 @@ class SideMenu extends StatelessWidget {
       color: kBgLightColor,
       child: Column(
         children: [
-          Image.asset(
-            "assets/images/Logo Outlook.png",
-            width: 46,
+          Row(
+            children: [
+              Image.asset(
+                "assets/images/Logo Outlook.png",
+                width: 46,
+              ),
+              Spacer(),
+              if (!Responsive.isDesktop(context)) CloseButton(),
+            ],
           ),
-          Spacer(),
-          if (!Responsive.isDesktop(context)) CloseButton(),
           SizedBox(height: kDefaultPadding),
           FlatButton.icon(
             minWidth: double.infinity,

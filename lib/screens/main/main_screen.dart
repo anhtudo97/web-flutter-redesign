@@ -12,7 +12,7 @@ class MainScreen extends StatelessWidget {
     // Once our width is less then 1300 then it start showing errors
     return Scaffold(
       body: Responsive(
-        mobile: Container(),
+        mobile: ListOfEmails(),
         tablet: Row(
           children: [
             Expanded(
