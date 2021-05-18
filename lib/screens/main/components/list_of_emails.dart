@@ -1,39 +1,61 @@
 import 'package:flutter/material.dart';
+import 'package:outlook/components/side_menu.dart';
 import 'package:outlook/models/Email.dart';
 import 'package:websafe_svg/websafe_svg.dart';
 
 import '../../../constants.dart';
 import 'email_card.dart';
 
-class ListOfEmails extends StatelessWidget {
+class ListOfEmails extends StatefulWidget {
   const ListOfEmails({
     Key key,
   }) : super(key: key);
 
   @override
+  _ListOfEmailsState createState() => _ListOfEmailsState();
+}
+
+class _ListOfEmailsState extends State<ListOfEmails> {
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: _scaffoldKey,
+      drawer: ConstrainedBox(
+        constraints: BoxConstraints(maxWidth: 250),
+        child: SideMenu(),
+      ),
       body: Container(
         padding: EdgeInsets.all(kDefaultPadding),
         color: kBgDarkColor,
         child: Column(
           children: [
-            TextField(
-              onChanged: (value) {},
-              decoration: InputDecoration(
-                hintText: "Search",
-                fillColor: kBgLightColor,
-                filled: true,
-                suffixIcon: WebsafeSvg.asset(
-                  "assets/Icons/Search.svg",
-                  width: 24,
+            Row(children: [
+              IconButton(
+                  icon: Icon(Icons.menu),
+                  onPressed: () {
+                    _scaffoldKey.currentState.openDrawer();
+                  }),
+              SizedBox(width: 5),
+              Expanded(
+                child: TextField(
+                  onChanged: (value) {},
+                  decoration: InputDecoration(
+                    hintText: "Search",
+                    fillColor: kBgLightColor,
+                    filled: true,
+                    suffixIcon: WebsafeSvg.asset(
+                      "assets/Icons/Search.svg",
+                      width: 24,
+                    ),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(10)),
+                      borderSide: BorderSide.none,
+                    ),
+                  ),
                 ),
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.all(Radius.circular(10)),
-                  borderSide: BorderSide.none,
-                ),
-              ),
-            ),
+              )
+            ]),
             SizedBox(height: kDefaultPadding),
             Row(
               children: [

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:outlook/responsive.dart';
 import 'package:websafe_svg/websafe_svg.dart';
 
 import '../constants.dart';
@@ -22,6 +23,8 @@ class SideMenu extends StatelessWidget {
             "assets/images/Logo Outlook.png",
             width: 46,
           ),
+          Spacer(),
+          if (!Responsive.isDesktop(context)) CloseButton(),
           SizedBox(height: kDefaultPadding),
           FlatButton.icon(
             minWidth: double.infinity,
